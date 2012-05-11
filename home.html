@@ -1,0 +1,43 @@
+<html>
+<body>
+<head>
+<title>Domain Generator</title>
+<link rel="stylesheet" type="text/css" href="css" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    getNew();
+    
+    $(".newOne").click(getNew);
+});
+
+function getNew() {
+    $.ajax({
+        type: "GET",
+        url: "new",
+        success: handleNew
+    }); 
+}
+
+function handleNew(newData) {
+    var data = $.parseJSON(newData);
+    
+    $(".first").text(data[0]);
+    $(".second").text(data[1]);
+    $("a.buyIt").attr('href', 'http://www.networksolutions.com/search.jsp?searchTerm=' + data[0] + data[1] + '.com');
+    $(".dotcom").text(".com");
+}
+</script>
+</head>
+<div class="wrap">
+    <span class="pre">Your awesome domain is...</span><br><br>
+    <span class="domain first"></span>
+    <span class="domain second"></span>
+    <span class="domain dotcom"></span><br><br>
+    <span class="aboutIt">Like it?  <a class="buyIt" href="#">Buy it!</a>  Or, <a href="#" class="newOne">get a new one</a>.</span>
+</div>
+<div class="footer">
+    Brought to you by <a href="http://www.wegnerdesign.com/Joe_Wegner">Joe Wegner</a>
+</div>
+</body>
+</html>
