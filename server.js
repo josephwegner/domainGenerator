@@ -20,7 +20,7 @@ http.createServer(function(req, res) {
     }
     
     
-}).listen(process.env.PORT, "0.0.0.0");
+}).listen(process.env.PORT || 3000);
 
 function getNewDomains(resp) {
     http.get({ host: "www.wegnerdesign.com", path: "/compoundWord/index.php"}, function(res) {
